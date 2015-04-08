@@ -3,12 +3,14 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django import views
+from views import login
 
 # from django.contrib import admin
 
 urlpatterns = patterns('',
     # Examples:
     url(r'^home$', 'logistica.views.home', name='home'),
+    url(r'^login/$', 'logistica.views.login', name='login' ),
     #url(r'^about/', 'social.views.about', name='about'),
     #url(r'^dreams/', 'social.views.dream_info', name='dreams'),
     #url(r'^submit/', 'social.views.submit', name='submit'),

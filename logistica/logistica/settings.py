@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'logistica',
+    'bootstrap3',
 )
 
 MIDDLEWARE_CLASSES = (

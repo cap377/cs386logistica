@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib import auth
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
 from django.core.context_processors import csrf
 #cross-site request forgery 
@@ -9,6 +10,7 @@ from django.core.context_processors import csrf
 from django import forms
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from models import LoginForm
 
 
 ##@login_required
@@ -22,7 +24,24 @@ from django.contrib.auth import logout
 
 def home(request):
 	return render(request, 'home.html', {})
-
+def login(request):
+	error = ""
+	if request.method == "POST":
+		login_form = LoginForm(request.POST)
+		username = login_form.cleaned_data["username"]
+		password = login_form.cleaned_data["password"]
+		user = authenticate(username=username, password=password)
+		if user is not None:
+			login(request, user)
+			return HttpResponseRedirect('/home/')
+		else:
+			error = "Invalid username/password."
+			form = LoginForm(initial={'username': request.POST.get('username')})
+	elif request.method == 'GET':
+		login_form = LoginForm()
+	else:
+		return HttpResponseRedirect('/sign_in')
+	return render(request, "login.html", {'login_form': login_form, 'error': error })
 ##@login_required
 ##def dream_info(request):
 ##        return render(request, 'dreams.html', {
