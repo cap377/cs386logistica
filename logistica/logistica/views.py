@@ -28,15 +28,16 @@ def login(request):
 	error = ""
 	if request.method == "POST":
 		login_form = LoginForm(request.POST)
-		username = login_form.cleaned_data["username"]
-		password = login_form.cleaned_data["password"]
-		user = authenticate(username=username, password=password)
-		if user is not None:
-			login(request, user)
-			return HttpResponseRedirect('/home/')
-		else:
-			error = "Invalid username/password."
-			form = LoginForm(initial={'username': request.POST.get('username')})
+		if login_form.is_valid():
+			username = login_form.cleaned_data["username"]
+			password = login_form.cleaned_data["password"]
+			user = authenticate(username=username, password=password)
+			if user is not None:
+				login(request, user)
+				return HttpResponseRedirect('/home/')
+			else:
+				error = "Invalid username/password."
+				form = LoginForm(initial={'username': request.POST.get('username')})
 	elif request.method == 'GET':
 		login_form = LoginForm()
 	else:
