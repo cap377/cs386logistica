@@ -40,7 +40,7 @@ def login(request):
 	elif request.method == 'GET':
 		login_form = LoginForm()
 	else:
-		return HttpResponseRedirect('/sign_in')
+		return HttpResponseRedirect('/login/')
 	return render(request, "login.html", {'login_form': login_form, 'error': error })
 ##@login_required
 ##def dream_info(request):
