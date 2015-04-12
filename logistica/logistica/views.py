@@ -100,14 +100,14 @@ def user_login(request):
                 # If the account is valid and active, we can log the user in.
                 # We'll send the user back to the homepage.
                 login(request, user)
-                return HttpResponseRedirect('/home')
+                return HttpResponseRedirect('/employee')
             else:
                 # An inactive account was used - no logging in!
-                return HttpResponse("Your Logistica account is disabled.")
+                return HttpResponse('/invalid')
         else:
             # Bad login details were provided. So we can't log the user in.
             print("Invalid login details: {0}, {1}".format(username, password))
-            return HttpResponseRedirect('/home')
+            return HttpResponseRedirect('/invalid')
     else:
         return render(request, 'login.html', {})
 ##
