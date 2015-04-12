@@ -10,7 +10,7 @@ from django.core.context_processors import csrf
 from django import forms
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from models import LoginForm
+from models import User, UserForm
 
 
 ##@login_required
@@ -24,25 +24,29 @@ from models import LoginForm
 
 def home(request):
 	return render(request, 'home.html', {})
-def login(request):
-	error = ""
-	if request.method == "POST":
-		login_form = LoginForm(request.POST)
-		if login_form.is_valid():
-			username = login_form.cleaned_data["username"]
-			password = login_form.cleaned_data["password"]
-			user = authenticate(username=username, password=password)
-			if user is not None:
-				login(request, user)
-				return HttpResponseRedirect('/home/')
-			else:
-				error = "Invalid username/password."
-				form = LoginForm(initial={'username': request.POST.get('username')})
-	elif request.method == 'GET':
-		login_form = LoginForm()
-	else:
-		return HttpResponseRedirect('/login/')
-	return render(request, "login.html", {'login_form': login_form, 'error': error })
+
+
+##def login(request):
+##	error = ""
+##	if request.method == "POST":
+##		login_form = LoginForm(request.POST)
+##		if login_form.is_valid():
+##			username = login_form.cleaned_data["username"]
+##			password = login_form.cleaned_data["password"]
+##			user = authenticate(username=username, password=password)
+##			if user is not None:
+##				login(request, user)
+##				return HttpResponseRedirect('/home/')
+##			else:
+##				error = "Invalid username/password."
+##				form = LoginForm(initial={'username': request.POST.get('username')})
+##	elif request.method == 'GET':
+##		login_form = LoginForm()
+##	else:
+##		return HttpResponseRedirect('/login/')
+##	return render(request, "login.html", {'login_form': login_form, 'error': error })
+
+
 ##@login_required
 ##def dream_info(request):
 ##        return render(request, 'dreams.html', {
@@ -68,38 +72,38 @@ def login(request):
 ##    return render(request, 'invalid_login.html', {})
 ##
 ##
-##def user_login(request):
-##
-##    # If the request is a HTTP POST, try to pull out the relevant information.
-##    if request.method == 'POST':
-##        # Gather the username and password provided by the user.
-##        # This information is obtained from the login form.
-##                
-##        username = request.POST.get('username')
-##        password = request.POST.get('password')
-##
-##        
-##        # combination is valid - a User object is returned if it is.
-##        user = authenticate(username=username, password=password)
-##
-##        # If we have a User object, the details are correct.
-##        
-##        if user:
-##            # Is the account active? 
-##            if user.is_active:
-##                # If the account is valid and active, we can log the user in.
-##                # We'll send the user back to the homepage.
-##                login(request, user)
-##                return HttpResponseRedirect('/dreams/')
-##            else:
-##                # An inactive account was used - no logging in!
-##                return HttpResponse("Your MyStupidDreams account is disabled.")
-##        else:
-##            # Bad login details were provided. So we can't log the user in.
-##            print("Invalid login details: {0}, {1}".format(username, password))
-##            return HttpResponseRedirect('/invalid_login/')
-##    else:
-##        return render(request, 'login.html', {})
+def user_login(request):
+
+    # If the request is a HTTP POST, try to pull out the relevant information.
+    if request.method == 'POST':
+        # Gather the username and password provided by the user.
+        # This information is obtained from the login form.
+                
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        
+        # combination is valid - a User object is returned if it is.
+        user = authenticate(username=username, password=password)
+
+        # If we have a User object, the details are correct.
+        
+        if user:
+            # Is the account active? 
+            if user.is_active:
+                # If the account is valid and active, we can log the user in.
+                # We'll send the user back to the homepage.
+                login(request, user)
+                return HttpResponseRedirect('/home')
+            else:
+                # An inactive account was used - no logging in!
+                return HttpResponse("Your Logistica account is disabled.")
+        else:
+            # Bad login details were provided. So we can't log the user in.
+            print("Invalid login details: {0}, {1}".format(username, password))
+            return HttpResponseRedirect('/home')
+    else:
+        return render(request, 'login.html', {})
 ##
 ##
 ##
