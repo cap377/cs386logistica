@@ -4,12 +4,19 @@
 {% block title %} Login Success {% endblock %}
 {% block content %}
 
-        <h1>Logged in as {{user.username}}</h1>
+{% if user.is_superuser %}
+
+        <h1>Logged in as admin: {{user.username}}</h1>
         <p>Potentially where we could put a team adding function.<p>
         <p>A view team evals</p>
+{% else %}
+	
+	<h1>Logged in as employee: {{user.username}}</h1>
+        <p>A table of what groups the employee is a part of, linking to an eval page</p>
+        <p>Maybe a view past submissions page</p>
 
      
-
+{% endif %}
  
 
 {% endblock %}
