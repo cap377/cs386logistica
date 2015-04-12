@@ -21,4 +21,7 @@ urlpatterns = patterns('',
     #url(r'^login/', 'social.views.user_login', name='login'),
     #url(r'^logout/$', 'social.views.user_logout', name='logout'),
     #url(r'^invalid_login/$', 'social.views.invalid_login', name='invalid_login'),
+    url(r'^administrator$', 'logistica.views.administrator', name='administrator'),
+    url(r'^employee$', 'logistica.views.employee', name='employee' ),
+    url(r'^invalid$', 'logistica.views.invalid', name='invalid'),
 )  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

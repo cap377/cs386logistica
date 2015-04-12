@@ -24,6 +24,12 @@ from models import User, UserForm
 
 def home(request):
 	return render(request, 'home.html', {})
+def administrator(request):
+	return render(request, 'administrator.html', {})
+def employee(request):
+	return render(request, 'employee.html', {})
+def invalid(request):
+	return render(request, 'invalid.html', {})
 
 
 ##def login(request):
