@@ -23,14 +23,16 @@ from models import User, UserForm
 
 def home(request):
 	return render(request, 'home.html', {})
-def administrator(request):
-	return render(request, 'administrator.html', {})
+def loggedin(request):
+	return render(request, 'loggedin.html', {})
 def employee(request):
 	return render(request, 'employee.html', {})
 def invalid(request):
 	return render(request, 'invalid.html', {})
 def register(request):
         return render(request, 'register.html', {})
+def evaluation(request):
+        return render(request, 'evaluation.html', {})
 
 
 ##def login(request):
@@ -101,7 +103,7 @@ def user_login(request):
                 # If the account is valid and active, we can log the user in.
                 # We'll send the user back to the homepage.
                 login(request, user)
-                return HttpResponseRedirect('/administrator')
+                return HttpResponseRedirect('/loggedin')
             else:
                 # An inactive account was used - no logging in!
                 return HttpResponse('/invalid')
