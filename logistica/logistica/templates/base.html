@@ -99,18 +99,8 @@
     <div class="container">
 	
       <div class="masthead">
-        <center><img src="/static/images/logo.png"></center>
-        <div class="navbar">
-          <div class="navbar-inner">
-            <div class="container">
-              <ul class="nav">
-                <li><a href='{% url "home" %}'>Home</a></li>
-		<li><a href='{% url "login" %}'>Login</a></li>
-               
-              </ul>
-            </div>
-          </div>
-        </div><!-- /.navbar -->
+        <center><a href="/home"><img src="/static/images/logo.png"></a></center>
+	<hr>
       </div>
  {% block content %}
       {% endblock %}
