@@ -12,25 +12,30 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from models import User, UserForm
 
-##@login_required
-##def user_logout(request):
-##    # Since we know the user is logged in, we can now just log them out.
-##    logout(request)
-##
-##    # Take the user back to the homepage.
-##    return HttpResponseRedirect('/home')
+@login_required
+def user_logout(request):
+    # Since we know the user is logged in, we can now just log them out.
+    logout(request)
+
+    # Take the user back to the homepage.
+    return HttpResponseRedirect('/home')
 
 
 def home(request):
 	return render(request, 'home.html', {})
+
+@login_required
 def loggedin(request):
 	return render(request, 'loggedin.html', {})
-def employee(request):
-	return render(request, 'employee.html', {})
+
 def invalid(request):
 	return render(request, 'invalid.html', {})
+
+@login_required
 def register(request):
         return render(request, 'register.html', {})
+
+@login_required
 def evaluation(request):
         return render(request, 'evaluation.html', {})
 
@@ -130,6 +135,7 @@ def user_login(request):
 ##		return HttpResponseRedirect('invalid')
 ##
 ##
+@login_required
 def register(request):
         registered = False
         if request.method == 'POST':

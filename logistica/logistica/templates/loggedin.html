@@ -10,12 +10,14 @@
         <p>Potentially where we could put a team adding function.<p>
         <p>A view team evals</p>
 	<h1><a href="/register">Click here</a> To register a new user.</h1>
+	<h1><a href="/logout">Click here</a> to logout.</h1>
 {% else %}
 	
 	<h1>Logged in as employee: {{user.username}}</h1>
         <p>A table of what groups the employee is a part of, linking to an eval page</p>
         <p>Maybe a view past submissions page</p>
         <h1><a href="/evaluation">Click here</a> to submit an evaluation.</h1>
+	<h1><a href="/logout">Click here</a> to logout.</h1>
 
      
 {% endif %}
