@@ -20,7 +20,6 @@ def user_logout(request):
     # Take the user back to the homepage.
     return HttpResponseRedirect('/home')
 
-
 def home(request):
 	return render(request, 'home.html', {})
 
