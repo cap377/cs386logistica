@@ -10,7 +10,7 @@ from django.core.context_processors import csrf
 from django import forms
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from models import User, UserForm
+from models import User, UserForm, Evaluation, EvaluationForm
 
 @login_required
 def user_logout(request):
@@ -117,6 +117,22 @@ def user_login(request):
             return HttpResponseRedirect('/invalid')
     else:
         return render(request, 'login.html', {})
+
+def submit_evaluation(request):
+    if request.method == 'POST':
+        eval1 = EvaluationForm(request.POST)
+        if eval1.is_valid():
+            x = Evaluation()
+            x.participation = eval1.cleaned_data["participation"]
+            x.communication = eval1.cleaned_data["communication"]
+            x.presentation = eval1.cleaned_data["presentation"]
+            x.techskill = eval1.cleaned_data["techskill"]
+            x.save()
+            return HttpResponseRedirect("/valid_submission")
+    else:
+        eval1 = EvaluationForm()
+    return render(request, "loggedin.html", {"eval1": eval1})
+    
 ##
 ##
 ##

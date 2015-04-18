@@ -4,8 +4,14 @@
 {% block title %} Evaluation {% endblock %}
 {% block content %}
 
+<h1>Evaluation</h1>
+<form method="POST" action="/evaluation">
+	{% csrf_token %}
+	{{ eval1 }}
+	<input type = "submit" value = "Submit" />
+</form>
 
-<!<form action="">
+<!-- <!<form action="">
 <h2>Participation</h2>
 <input type="radio" name="participation" value=1 id="part1">1
 <input type="radio" name="participation" value=2 id="part2">2
@@ -61,7 +67,7 @@
 <input type="radio" name="technical" value=10 id="tech10">10
 
 <p><b>Note:</b> A measure of your teammates skill with the tools used in your project.</p>
-<!</form>
+<!</form> -->
 
 
 {% endblock %}
