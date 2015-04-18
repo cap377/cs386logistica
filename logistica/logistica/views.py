@@ -10,7 +10,7 @@ from django.core.context_processors import csrf
 from django import forms
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from models import User, UserForm, Evaluation, EvaluationForm
+from models import User, UserForm, Evaluation
 
 @login_required
 def user_logout(request):
@@ -34,9 +34,29 @@ def invalid(request):
 def register(request):
         return render(request, 'register.html', {})
 
+class EvaluationForm(forms.Form):
+    participation = forms.IntegerField(label = "Participation")
+    communication = forms.IntegerField(label = "Communication")
+    presentation = forms.IntegerField(label = "Presentation")
+    techskill = forms.IntegerField(label = "Technical Skill")
+    
 @login_required
 def evaluation(request):
-        return render(request, 'evaluation.html', {})
+    if request.method == 'POST':
+        form = EvaluationForm(request.POST)
+        if form.is_valid():
+            ev = Evaluation()
+            ev.participation = form.cleaned_data["participation"]
+            ev.communication = form.cleaned_data["communication"]
+            ev.presentation = form.cleaned_data["presentation"]
+            ev.techskill = form.cleaned_data["techskill"]
+            ev.save()
+            return HttpResponseRedirect ("/loggedin")
+    elif request.method == 'GET':
+        form = EvaluationForm()
+    else:
+        return HttpResponseRedirect ("/404/")
+    return render(request, 'evaluation.html', {"form": form})
 
 
 ##def login(request):

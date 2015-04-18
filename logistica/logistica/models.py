@@ -39,9 +39,6 @@ class Evaluation(models.Model):
     techskill = models.IntegerField(max_length=2,
                                         default = 5)
     
-class EvaluationForm(forms.Form):
-    participation = forms.IntegerField(label = "Participation")
-    
 ##class EvaluationForm(forms.ModelForm):
 ##        class Meta:
 ##            model = Evaluation

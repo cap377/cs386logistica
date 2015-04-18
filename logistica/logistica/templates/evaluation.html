@@ -5,10 +5,14 @@
 {% block content %}
 
 <h1>Evaluation</h1>
-<form method="POST" action="/evaluation">
+<form action="/evaluation" method="POST">
 	{% csrf_token %}
-	{{ eval1 }}
-	<input type = "submit" value = "Submit" />
+	{% bootstrap_form form %}
+	{% buttons %}
+	<button type="submit" class="btn btn-primary">
+	Submit
+	</button>
+	{% endbuttons %}
 </form>
 
 <!-- <!<form action="">

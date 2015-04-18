@@ -4,6 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django import views
 from views import login
+from views import *
 
 # from django.contrib import admin
 
