@@ -35,6 +35,8 @@ def register(request):
         return render(request, 'register.html', {})
 
 class EvaluationForm(forms.Form):
+    author = forms.CharField(label = "Username")
+    evaluee = forms.CharField(label = "Evaluee")
     participation = forms.IntegerField(label = "Participation")
     communication = forms.IntegerField(label = "Communication")
     presentation = forms.IntegerField(label = "Presentation")
@@ -46,6 +48,8 @@ def evaluation(request):
         form = EvaluationForm(request.POST)
         if form.is_valid():
             ev = Evaluation()
+            ev.author = form.cleaned_data["author"]
+            ev.evaluee = form.cleaned_data["evaluee"]
             ev.participation = form.cleaned_data["participation"]
             ev.communication = form.cleaned_data["communication"]
             ev.presentation = form.cleaned_data["presentation"]

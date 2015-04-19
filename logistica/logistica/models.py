@@ -30,6 +30,8 @@ class UserForm(forms.ModelForm):
 
 
 class Evaluation(models.Model):
+    author = models.CharField(max_length = 30, default = "")
+    evaluee = models.CharField(max_length = 30, default = "")
     participation = models.IntegerField(max_length=2,
                                         default = 5)
     communication = models.IntegerField(max_length=2,
