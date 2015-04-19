@@ -48,6 +48,7 @@ def statistics(request):
 
 class EvaluationForm(forms.Form):
     author = forms.CharField(required = True, label = "Username")
+    author.widget = author.hidden_widget()
     evaluee = forms.CharField(required = True, label = "Evaluee")
     participation = forms.IntegerField(required = True, label = "Participation")
     communication = forms.IntegerField(required = True, label = "Communication")
@@ -60,7 +61,7 @@ def evaluation(request):
         form = EvaluationForm(request.POST)
         if form.is_valid():
             ev = Evaluation()
-            ev.author = form.cleaned_data["author"]
+            ev.author = form.cleaned_data["author"] = request.user
             ev.evaluee = form.cleaned_data["evaluee"]
             ev.participation = form.cleaned_data["participation"]
             ev.communication = form.cleaned_data["communication"]
