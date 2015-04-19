@@ -35,7 +35,7 @@ def register(request):
         return render(request, 'register.html', {})
 
 class EvaluationForm(forms.Form):
-    author = forms.CharField(label = "Username" initial="")
+    author = forms.CharField(label = "Username", initial="NOOOO")
     author.widget = author.hidden_widget()
     evaluee = forms.CharField(required = True, label = "Evaluee")
     participation = forms.IntegerField(required = True, label = "Participation")
