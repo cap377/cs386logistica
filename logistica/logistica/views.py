@@ -63,6 +63,14 @@ def evaluation(request):
         return HttpResponseRedirect ("/404/")
     return render(request, 'evaluation.html', {"form": form})
 
+@login_required
+def statistics(request):
+    if request.user.is_authenticated():
+        return render(request, 'statistics.html',
+                     {'users': User.objects.all})
+    else:
+        return HttpResponseRedirect('/home/')
+
 
 ##def login(request):
 ##	error = ""
