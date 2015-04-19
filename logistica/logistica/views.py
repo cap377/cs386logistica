@@ -11,6 +11,7 @@ from django import forms
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from models import User, UserForm, Evaluation, UserProfile
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 @login_required
 def user_logout(request):
@@ -42,10 +43,10 @@ class EvaluationForm(forms.Form):
     author = forms.CharField(label = "Username", initial="NOOOO")
     author.widget = author.hidden_widget()
     evaluee = forms.CharField(required = True, label = "Evaluee")
-    participation = forms.IntegerField(required = True, label = "Participation")
-    communication = forms.IntegerField(required = True, label = "Communication")
-    presentation = forms.IntegerField(required = True, label = "Presentation")
-    techskill = forms.IntegerField(required = True, label = "Technical Skill")
+    participation = forms.IntegerField(required = True, label = "Participation" , validators=[MinValueValidator(1), MaxValueValidator(10)])
+    communication = forms.IntegerField(required = True, label = "Communication" , validators=[MinValueValidator(1), MaxValueValidator(10)])
+    presentation = forms.IntegerField(required = True, label = "Presentation" , validators=[MinValueValidator(1), MaxValueValidator(10)])
+    techskill = forms.IntegerField(required = True, label = "Technical Skill" , validators=[MinValueValidator(1), MaxValueValidator(10)])
     
 @login_required
 def evaluation(request):
