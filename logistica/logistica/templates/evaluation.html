@@ -5,6 +5,7 @@
 {% block content %}
 
 <h1>Evaluation</h1>
+<p>This is the Team Member evaluation form for Logistica employees. Please enter your Username into the <b>Username</b> field, and the name of the team member you are evaluating into the <b>Evaluee</b> field. The following four fields are based on a scale from 1 to 10, 1 being the lowest possible score, 10 being the highest. Then press the submit button at the bottom of the page to submit and return to your employee page.</p>
 <form action="/evaluation" method="POST">
 	{% csrf_token %}
 	{% bootstrap_form form %}
@@ -14,64 +15,5 @@
 	</button>
 	{% endbuttons %}
 </form>
-
-<!-- <!<form action="">
-<h2>Participation</h2>
-<input type="radio" name="participation" value=1 id="part1">1
-<input type="radio" name="participation" value=2 id="part2">2
-<input type="radio" name="participation" value=3 id="part3">3
-<input type="radio" name="participation" value=4 id="part4">4
-<input type="radio" name="participation" value=5 id="part5">5
-<input type="radio" name="participation" value=6 id="part6">6
-<input type="radio" name="participation" value=7 id="part7">7
-<input type="radio" name="participation" value=8 id="part8">8
-<input type="radio" name="participation" value=9 id="part9">9
-<input type="radio" name="participation" value=10 id="part10">10
-
-<p><b>Note:</b> A measure of how much work your teammate put into the project. Questions to consider: Did they work on many tasks, or only one? Did they partake in the development process?</p>
-
-<h2>Communication Rating</h2>
-<input type="radio" name="communication" value=1 id="comm1">1
-<input type="radio" name="communication" value=2 id="comm2">2
-<input type="radio" name="communication" value=3 id="comm3">3
-<input type="radio" name="communication" value=4 id="comm4">4
-<input type="radio" name="communication" value=5 id="comm5">5
-<input type="radio" name="communication" value=6 id="comm6">6
-<input type="radio" name="communication" value=7 id="comm7">7
-<input type="radio" name="communication" value=8 id="comm8">8
-<input type="radio" name="communication" value=9 id="comm9">9
-<input type="radio" name="communication" value=10 id="comm10">10
-
-<p><b>Note:</b> A measure of your teammate's ability and effort put in to communicate with the team. Questions to consider: Did they attend group meetings? Did they explain their work to the team? Did they come up with unique ideas for the project?</p>
-
-<h2>Presentation</h2>
-<input type="radio" name="presentation" value=1 id="pres1">1
-<input type="radio" name="presentation" value=2 id="pres2">2
-<input type="radio" name="presentation" value=3 id="pres3">3
-<input type="radio" name="presentation" value=4 id="pres4">4
-<input type="radio" name="presentation" value=5 id="pres5">5
-<input type="radio" name="presentation" value=6 id="pres6">6
-<input type="radio" name="presentation" value=7 id="pres7">7
-<input type="radio" name="presentation" value=8 id="pres8">8
-<input type="radio" name="presentation" value=9 id="pres9">9
-<input type="radio" name="presentation" value=10 id="pres10">10
-
-<p><b>Note:</b> A measure of your teammates ability and willingness to present the project.</p>
-
-<h2>Technical Skills</h2>
-<input type="radio" name="technical" value=1 id="tech1">1
-<input type="radio" name="technical" value=2 id="tech2">2
-<input type="radio" name="technical" value=3 id="tech3">3
-<input type="radio" name="technical" value=4 id="tech4">4
-<input type="radio" name="technical" value=5 id="tech5">5
-<input type="radio" name="technical" value=6 id="tech6">6
-<input type="radio" name="technical" value=7 id="tech7">7
-<input type="radio" name="technical" value=8 id="tech8">8
-<input type="radio" name="technical" value=9 id="tech9">9
-<input type="radio" name="technical" value=10 id="tech10">10
-
-<p><b>Note:</b> A measure of your teammates skill with the tools used in your project.</p>
-<!</form> -->
-
 
 {% endblock %}
