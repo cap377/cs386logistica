@@ -4,11 +4,31 @@
 {% block title %} Login {% endblock %}
 {% block content %}
 
+
+
+{% if user.is_authenticated %}
+
+
+{% if user.is_superuser %}
+	<p>Currently Logged in as: {{user.username}}</p>
+	<p>Permissions: Manager</p>
+	
+
+	<meta http-equiv="refresh" content="0; url=/loggedin" />
+	
+{% else %}
+	
+	<p>Currently Logged in as: {{user.username}}</p>
+	<p>Permissions: Employee</p>
+	
+
+	<meta http-equiv="refresh" content="0; url=/loggedin" />
+
+{% endif %}
+{% else %}
+
         <h1>Welcome</h1>
-	<p> Welcome to the Logisitica Peer-Evaluation system. Click<a href="/login"> HERE</a> to sign in.</p>
+	<p> Welcome to the Logisitica Peer-Evaluation System. Click<a href="/login"> HERE</a> to sign in.</p>
 
-     
-
- 
-
+{% endif %}
 {% endblock %}
