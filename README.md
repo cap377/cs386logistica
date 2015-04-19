@@ -2,3 +2,11 @@
 
 # cs386logistica
 Logistica Peer Evaluation System
+
+ToDo:
+- edit evaluations
+- create teams/project deadline?
+- managers view employees stats
+- employees view their stats
+- recent submissions
+- upcoming evaluations
