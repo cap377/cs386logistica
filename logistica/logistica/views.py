@@ -24,6 +24,10 @@ def home(request):
 	return render(request, 'home.html', {})
 
 @login_required
+def confirmation(request):
+	return render(request, 'confirmation.html', {})
+
+@login_required
 def loggedin(request):
 	return render(request, 'loggedin.html', {})
 
