@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^home$', 'logistica.views.home', name='home'),
     url(r'^login/$', 'logistica.views.user_login', name='login' ),
+    url(r'^statistics/$', 'logistica.views.statistics', name='statistics'),
     #url(r'^about/', 'social.views.about', name='about'),
     #url(r'^dreams/', 'social.views.dream_info', name='dreams'),
     #url(r'^submit/', 'social.views.submit', name='submit'),

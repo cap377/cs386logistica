@@ -10,7 +10,7 @@ from django.core.context_processors import csrf
 from django import forms
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from models import User, UserForm, Evaluation
+from models import User, UserForm, Evaluation, UserProfile
 
 @login_required
 def user_logout(request):
@@ -33,6 +33,14 @@ def invalid(request):
 @login_required
 def register(request):
         return render(request, 'register.html', {})
+
+@login_required
+def statistics(request):
+    if request.user.is_authenticated():
+        return render(request, 'statistics.html',
+                     {'users': User.objects.all})
+    else:
+        return HttpResponseRedirect('/home/')
 
 class EvaluationForm(forms.Form):
     author = forms.CharField(required = True, label = "Username")
