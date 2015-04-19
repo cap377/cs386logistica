@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% load bootstrap3 %}
 {% block nav-home %} {% endblock %}
-{% block title %} Evaluation {% endblock %}
+{% block title %} Peer Evaluation {% endblock %}
 {% block content %}
 
-<h1>Evaluation</h1>
-<p>This is the Team Member evaluation form for Logistica employees. Please enter your Username into the <b>Username</b> field, and the name of the team member you are evaluating into the <b>Evaluee</b> field. The following four fields are based on a scale from 1 to 10, 1 being the lowest possible score, 10 being the highest. Then press the submit button at the bottom of the page to submit and return to your employee page.</p>
+<h1>Peer Evaluation</h1>
+<p>This is the Team Member evaluation form for Logistica employees. Enter the name of the team member you are evaluating into the <b>Evaluee</b> field. The following four fields are based on a scale from 1 to 10, 1 being the lowest possible score, 10 being the highest. Then press the submit button at the bottom of the page to submit and return to your employee page.</p>
 <form action="/evaluation" method="POST">
 	{% csrf_token %}
 	{% bootstrap_form form %}
