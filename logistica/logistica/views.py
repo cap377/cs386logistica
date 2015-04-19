@@ -61,7 +61,7 @@ def evaluation(request):
             ev.presentation = form.cleaned_data["presentation"]
             ev.techskill = form.cleaned_data["techskill"]
             ev.save()
-            return HttpResponseRedirect ("/loggedin")
+            return HttpResponseRedirect ("/confirmation")
     elif request.method == 'GET':
         form = EvaluationForm()
     else:
@@ -77,52 +77,6 @@ def statistics(request):
         return HttpResponseRedirect('/home/')
 
 
-##def login(request):
-##	error = ""
-##	if request.method == "POST":
-##		login_form = LoginForm(request.POST)
-##		if login_form.is_valid():
-##			username = login_form.cleaned_data["username"]
-##			password = login_form.cleaned_data["password"]
-##			user = authenticate(username=username, password=password)
-##			if user is not None:
-##				login(request, user)
-##				return HttpResponseRedirect('/home/')
-##			else:
-##				error = "Invalid username/password."
-##				form = LoginForm(initial={'username': request.POST.get('username')})
-##	elif request.method == 'GET':
-##		login_form = LoginForm()
-##	else:
-##		return HttpResponseRedirect('/login/')
-##	return render(request, "login.html", {'login_form': login_form, 'error': error })
-
-
-##@login_required
-##def dream_info(request):
-##        return render(request, 'dreams.html', {
-##                'user_dreams': User.objects.all(),
-##                'dreams': Dream.objects.all()})
-##
-##@login_required
-##def dreamuser_info(request, usernamen):
-##        dreamlist = Dream.objects.all().filter(user__username = usernamen)
-##	return render(request, 'dreams.html', {'dreams' : dreamlist})
-##
-##@login_required
-##def flock_info(request):
-##	return render(request, 'flock.html', {'user_dreams' : User.objects.all(), 'dreams' : Dream.objects.all(),
-##                                               'flocks' : Dream.objects.values('flock').distinct()})
-##
-##
-##def about(request):
-##	return render(request, 'about.html', {})
-##
-##
-##def invalid_login(request):
-##    return render(request, 'invalid_login.html', {})
-##
-##
 def user_login(request):
 
     # If the request is a HTTP POST, try to pull out the relevant information.
@@ -171,42 +125,17 @@ def submit_evaluation(request):
         eval1 = EvaluationForm()
     return render(request, "loggedin.html", {"eval1": eval1})
     
-##
-##
-##
-##												 
-##def auth_view(request):
-##	username = request.POST.get('username', '')
-##	password = request.POST.get('password', '')
-##	#empty string on the end basically means if you can't find some value at least return an invalid error
-##	user = auth.authenticate(username=username, password=password)
-##
-##	if user is not None:
-##		auth.login(request, user)
-##		return HttpResponseRedirect('loggedin')
-##	else:
-##		return HttpResponseRedirect('invalid')
-##
-##
+
 @login_required
 def register(request):
         registered = False
         if request.method == 'POST':
                 user_form = UserForm(data=request.POST)
-                #profile_form = UserProfileForm(data=request.POST)
 
                 if user_form.is_valid():
                         user = user_form.save()
                         user.set_password(user.password)
                         user.save()
-                        
-                        #profile = profile_form.save(commit=False)
-                        #profile.user = user
-
-##                        if 'picture' in request.FILES:
-##                                profile.picture = request.FILES['picture']
-##
-##                        profile.save()
 
                         registered = True
 
@@ -215,27 +144,10 @@ def register(request):
 
         else:
                 user_form = UserForm()
-                #profile_form = UserProfileForm()
 
         return render(request,
                       'register.html',
                       {'user_form': user_form, 'registered': registered})
 
                         
-##@login_required
-##def submit(request):
-##    if request.method == 'POST':
-##        form2 = DreamSubmission(request.POST)
-##        if form2.is_valid():
-##            x = Dream()
-##            x.title = form2.cleaned_data["title"]
-##            x.content = form2.cleaned_data["content"]
-##            x.flock = form2.cleaned_data["flock"]
-##            x.user = form2.cleaned_data["user"]
-##            x.save()
-##            return HttpResponseRedirect("/dreams/")
-##    elif request.method == 'GET':
-##        form2 = DreamSubmission()
-##    else:
-##        return HttpResponseRedirect("/404/")
-##    return render(request, "submitdream.html", {"form2": form2})
+
