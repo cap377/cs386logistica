@@ -25,6 +25,12 @@ def home(request):
 	return render(request, 'home.html', {})
 
 @login_required
+def recentsub(request):
+    return render(request, 'recentsub.html', 
+        {'evaluations': Evaluation.objects.all})
+
+
+@login_required
 def confirmation(request):
 	return render(request, 'confirmation.html', {})
 
@@ -72,7 +78,7 @@ def evaluation(request):
 def statistics(request):
     if request.user.is_authenticated():
         return render(request, 'statistics.html',
-                     {'users': User.objects.all})
+                     {'users': User.objects.all()})
     else:
         return HttpResponseRedirect('/home/')
 

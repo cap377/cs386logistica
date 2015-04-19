@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block nav-home %} {% endblock %}
+{% block title %} Recent Sub {% endblock %}
+{% block content %}
+
+<h1>{{user.username}}'s Recent Evaluation Submissions</h1>
+
+<p>You submitted an evaluation for employee(s):</p>
+
+
+
+		{% for e in evaluations %}
+			{% if e.author = user.username %}
+			<div>
+					<p> <a href="/recentsub">{{e.evaluee}}</a> </p>
+			</div>
+			{% endif %}
+		{% endfor %}
+
+     
+
+ 
+
+
+{% endblock %}

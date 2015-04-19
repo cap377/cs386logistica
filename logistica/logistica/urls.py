@@ -25,4 +25,5 @@ urlpatterns = patterns('',
     url(r'^loggedin$', 'logistica.views.loggedin', name='loggedin'),
     url(r'^invalid$', 'logistica.views.invalid', name='invalid'),
     url(r'^evaluation$', 'logistica.views.evaluation', name='evaluation'),
+    url(r'^recentsub/', 'logistica.views.recentsub', name='recentsub'),
 )  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
