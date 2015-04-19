@@ -39,6 +39,11 @@ def invalid(request):
 def register(request):
         return render(request, 'register.html', {})
 
+@login_required
+def recentsub(request):
+    return render(request, 'recentsub.html',
+        {'evaluations': Evaluation.objects.all})
+
 class EvaluationForm(forms.Form):
     author = forms.CharField(label = "Username", initial="NOOOO")
     author.widget = author.hidden_widget()
