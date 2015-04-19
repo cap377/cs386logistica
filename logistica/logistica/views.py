@@ -72,7 +72,8 @@ def evaluation(request):
 def statistics(request):
     if request.user.is_authenticated():
         return render(request, 'statistics.html',
-                     {'users': User.objects.all})
+                     {'users': User.objects.all,
+                      'evaluations': Evaluation.objects.all})
     else:
         return HttpResponseRedirect('/home/')
 

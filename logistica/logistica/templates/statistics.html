@@ -6,6 +6,7 @@
 
 
         <h1>Welcome {{ user.username }}</h1>
+    {% if user.is_superuser %}
 	<p> List of users: </p>
 		{% for u in users %}
 			{% if u.is_superuser %}
@@ -15,6 +16,18 @@
 			</div>
 			{% endif %}
 		{% endfor %}
+	{% else %}
+		<div>
+			<p> Statistics for {{ user.username }}. </p>
+		</div>
+		{% for e in evaluations %}
+			{% if e.evaluee = user.username %}
+				<div>
+					<p> Participation: {{e.participation}}, Communication: {{e.communication}}, Presentation: {{e.presentation}}, Technical Skills: {{e.techskill}} </p>
+				</div>
+				{% endif %}
+				{% endfor %}
+	{% endif %}
 
      
 
