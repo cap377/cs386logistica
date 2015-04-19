@@ -35,12 +35,12 @@ def register(request):
         return render(request, 'register.html', {})
 
 class EvaluationForm(forms.Form):
-    author = forms.CharField(label = "Username")
-    evaluee = forms.CharField(label = "Evaluee")
-    participation = forms.IntegerField(label = "Participation")
-    communication = forms.IntegerField(label = "Communication")
-    presentation = forms.IntegerField(label = "Presentation")
-    techskill = forms.IntegerField(label = "Technical Skill")
+    author = forms.CharField(required = True, label = "Username")
+    evaluee = forms.CharField(required = True, label = "Evaluee")
+    participation = forms.IntegerField(required = True, label = "Participation")
+    communication = forms.IntegerField(required = True, label = "Communication")
+    presentation = forms.IntegerField(required = True, label = "Presentation")
+    techskill = forms.IntegerField(required = True, label = "Technical Skill")
     
 @login_required
 def evaluation(request):
