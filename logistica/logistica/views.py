@@ -24,6 +24,10 @@ def home(request):
 	return render(request, 'home.html', {})
 
 @login_required
+def confirmation(request):
+	return render(request, 'confirmation.html', {})
+
+@login_required
 def loggedin(request):
 	return render(request, 'loggedin.html', {})
 
@@ -63,7 +67,7 @@ def evaluation(request):
             ev.presentation = form.cleaned_data["presentation"]
             ev.techskill = form.cleaned_data["techskill"]
             ev.save()
-            return HttpResponseRedirect ("/loggedin")
+            return HttpResponseRedirect ("/confirmation")
     elif request.method == 'GET':
         form = EvaluationForm()
     else:
