@@ -42,7 +42,7 @@ def register(request):
 class EvaluationForm(forms.Form):
     author = forms.CharField(label = "Username", initial="NOOOO")
     author.widget = author.hidden_widget()
-    evaluee = forms.CharField(required = True, label = "Evaluee")
+    evaluee = forms.ModelChoiceField(required = True, label = "Evaluee", queryset=User.objects.all().order_by('username'))
     participation = forms.IntegerField(required = True, label = "Participation" , validators=[MinValueValidator(1), MaxValueValidator(10)])
     communication = forms.IntegerField(required = True, label = "Communication" , validators=[MinValueValidator(1), MaxValueValidator(10)])
     presentation = forms.IntegerField(required = True, label = "Presentation" , validators=[MinValueValidator(1), MaxValueValidator(10)])
