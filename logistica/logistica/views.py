@@ -24,10 +24,6 @@ def home(request):
 	return render(request, 'home.html', {})
 
 @login_required
-def confirmation(request):
-	return render(request, 'confirmation.html', {})
-
-@login_required
 def loggedin(request):
 	return render(request, 'loggedin.html', {})
 
@@ -38,16 +34,8 @@ def invalid(request):
 def register(request):
         return render(request, 'register.html', {})
 
-@login_required
-def statistics(request):
-    if request.user.is_authenticated():
-        return render(request, 'statistics.html',
-                     {'users': User.objects.all})
-    else:
-        return HttpResponseRedirect('/home/')
-
 class EvaluationForm(forms.Form):
-    author = forms.CharField(required = True, label = "Username")
+    author = forms.CharField(label = "Username")
     author.widget = author.hidden_widget()
     evaluee = forms.CharField(required = True, label = "Evaluee")
     participation = forms.IntegerField(required = True, label = "Participation")
@@ -68,7 +56,7 @@ def evaluation(request):
             ev.presentation = form.cleaned_data["presentation"]
             ev.techskill = form.cleaned_data["techskill"]
             ev.save()
-            return HttpResponseRedirect ("/confirmation")
+            return HttpResponseRedirect ("/loggedin")
     elif request.method == 'GET':
         form = EvaluationForm()
     else:
