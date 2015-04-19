@@ -100,6 +100,29 @@
 	
       <div class="masthead">
         <center><a href="/home"><img src="/static/images/logistica.png"></a><a href="/home"><img src="/static/images/logo.png"></a></center>
+        <br><br><div class="navbar">
+          <div class="navbar-inner">
+            <div class="container">
+              <ul class="nav">
+                <li><a href='{% url "home" %}'>Home</a></li>
+                {% if user.is_authenticated %}
+                    {% if user.is_superuser %}
+                      <li><a href='{% url "statistics" %}'>Statistics</a></li>
+                      <li><a href='{% url "register"%}'>Create User</a></li>
+                    {% else %}
+                      <li><a href='{% url "statistics" %}'>Statistics</a></li>
+                      <li><a href='{% url "evaluation" %}'>Evaluations</a></li>
+                    {% endif %}
+
+                <li><a href='{% url "logout" %}'>Logout</a></li>
+                {% else %}
+                <li><a href='{% url "login" %}'>Login</a></li>
+                {% endif %}
+               
+              </ul>
+            </div>
+          </div>
+        </div><!-- /.navbar -->
 	<hr>
       </div>
  {% block content %}
