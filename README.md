@@ -6,7 +6,7 @@ Logistica Peer Evaluation System
 ToDo:
 - edit evaluations
 - create teams/project deadline?
-- managers view employees stats
-- employees view their stats
+- managers view employees stats (Can view evaluations for each employee)
+- employees view their stats (Can view all evaluations submitted on them)
 - recent submissions
 - upcoming evaluations

@@ -11,9 +11,13 @@
 		{% for u in users %}
 			{% if u.is_superuser %}
 			{% else %}
-			<div>
-					<p> <a href="/statistics">{{ u.username }}</a> </p>
-			</div>
+			{% for e in evaluations %}
+				{% if e.evaluee = u.username %}
+					<div>
+						Technical Skills: {{e.techskill}}</p>
+					</div>
+				{% endif %}
+			{% endfor %}			
 			{% endif %}
 		{% endfor %}
 	{% else %}
