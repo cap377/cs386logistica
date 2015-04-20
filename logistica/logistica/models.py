@@ -29,6 +29,15 @@ class UserForm(forms.ModelForm):
         fields = ('username', 'password')
 
 
+class Team(models.Model):
+    teamName = models.IntegerField(max_length=2)
+    member1 = models.CharField(max_length=30, default="")
+    member2 = models.CharField(max_length=30, default="")
+    member3 = models.CharField(max_length=30, default="")
+    member4 = models.CharField(max_length=30, null=True, blank=True)
+    member5 = models.CharField(max_length=30, null=True, blank=True)
+
+
 class Evaluation(models.Model):
     author = models.CharField(max_length = 30, default = "")
     evaluee = models.CharField(max_length = 30, default = "")

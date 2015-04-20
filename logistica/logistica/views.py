@@ -10,7 +10,7 @@ from django.core.context_processors import csrf
 from django import forms
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from models import User, UserForm, Evaluation, UserProfile
+from models import User, UserForm, Evaluation, UserProfile, Team
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 @login_required
@@ -52,7 +52,14 @@ class EvaluationForm(forms.Form):
     communication = forms.IntegerField(required = True, label = "Communication" , validators=[MinValueValidator(1), MaxValueValidator(10)])
     presentation = forms.IntegerField(required = True, label = "Presentation" , validators=[MinValueValidator(1), MaxValueValidator(10)])
     techskill = forms.IntegerField(required = True, label = "Technical Skill" , validators=[MinValueValidator(1), MaxValueValidator(10)])
-    
+
+class TeamForm(forms.Form):
+    teamName = forms.IntegerField(label="Team Name")
+    member1 = forms.ModelChoiceField(required = True, label = "Member 1", queryset=User.objects.all().order_by('username'))
+    member2 = forms.ModelChoiceField(required = True, label = "Member 2", queryset=User.objects.all().order_by('username'))
+    member3 = forms.ModelChoiceField(required = True, label = "Member 3", queryset=User.objects.all().order_by('username'))
+    member4 = forms.ModelChoiceField(required = False, label = "Member 4", queryset=User.objects.all().order_by('username'))
+    member5 = forms.ModelChoiceField(required = False, label = "Member 5", queryset=User.objects.all().order_by('username'))
 
 class EvalForm(forms.ModelForm):
     class Meta:
@@ -87,6 +94,26 @@ def evaluation(request):
     else:
         return HttpResponseRedirect ("/404/")
     return render(request, 'evaluation.html', {"form": form})
+
+@login_required
+def registerTeam(request):
+    if request.method == 'POST':
+        form = TeamForm(request.POST)
+        if form.is_valid():
+            rt = Team()
+            rt.teamName = form.cleaned_data["teamName"]
+            rt.member1 = form.cleaned_data["member1"]
+            rt.member2 = form.cleaned_data["member2"]
+            rt.member3 = form.cleaned_data["member3"]
+            rt.member4 = form.cleaned_data["member4"] or None
+            rt.member5 = form.cleaned_data["member5"] or None
+            rt.save()
+            return HttpResponseRedirect ("/confirmation")
+    elif request.method == 'GET':
+        form = TeamForm()
+    else:
+        return HttpResponseRedirect ("/404/")
+    return render(request, 'registerTeam.html', {"form": form})
 
 @login_required
 def statistics(request):

@@ -109,6 +109,7 @@
                     {% if user.is_superuser %}
                       <li><a href='{% url "statistics" %}'>Statistics</a></li>
                       <li><a href='{% url "register"%}'>Create User</a></li>
+		      <li><a href='{% url "registerTeam"%}'>Create Team</a></li>
                     {% else %}
                       <li><a href='{% url "statistics" %}'>My Statistics</a></li>
                       <li><a href='{% url "evaluation" %}'>Create Evaluation</a></li>

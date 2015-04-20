@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block nav-home %} {% endblock %}
+{% block title %} RegisterTeam {% endblock %}
+
+{% block content %}
+
+<h1>Create A Team</h1>
+<p>Enter a Team Name, as well as a minimum of three team members below.</p>
+
+
+<div style="width: 100%;">
+   <div style="float:left; width: 80%">
+
+<form action="/registerTeam/" method="POST">
+	{% csrf_token %}
+	{%  bootstrap_form form %}
+	{% buttons %}
+	<button type="submit" class="btn btn-primary">
+	Submit
+	</button>
+	{% endbuttons %}
+</form>
+
+
+   </div>
+   <div style="float:right;">
+
+	<p></p>
+
+   </div>
+</div>
+<div style="clear:both"></div>
+
+{% endblock %}
