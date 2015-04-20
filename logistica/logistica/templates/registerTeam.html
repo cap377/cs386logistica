@@ -27,6 +27,16 @@
    <div style="float:right;">
 
 	<p></p>
+	{% for t in teams %}
+		<p>Team: {{t.teamName}}</p>
+		<p>{{t.member1}}</p>
+		<p>{{t.member2}}</p>
+		<p>{{t.member3}}</p>
+		<p>{{t.member4}}</p>
+		<p>{{t.member5}}</p>
+
+		<br> </br>
+	{% endfor %}
 
    </div>
 </div>

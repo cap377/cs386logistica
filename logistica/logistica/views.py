@@ -113,7 +113,7 @@ def registerTeam(request):
         form = TeamForm()
     else:
         return HttpResponseRedirect ("/404/")
-    return render(request, 'registerTeam.html', {"form": form})
+    return render(request, 'registerTeam.html', {"form": form, "teams": Team.objects.all().order_by("teamName")})
 
 @login_required
 def statistics(request):
