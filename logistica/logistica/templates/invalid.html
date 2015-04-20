@@ -3,14 +3,16 @@
 {% block nav-home %} {% endblock %}
 {% block title %} Login {% endblock %}
 {% block content %}
-	<p><font color="red">Login Invalid</font color="red"></p>
-	<h1>Login below!</h1>
+	<p><font color="red">Invalid Username/Password combination entered.</font color="red"></p>
+	<h1>Login below</h1>
+	<br>
+	<p>Login using your valid Username and Password issued to you by Logistica.</p>
 	<form id="login_form" method="post" action="/login/">
 		{% csrf_token %}
 		Username: <input type="text" name="username" value="" size="50" />
 		<br />
-		Password: <input type="password" name="password" value="" size="50" />
+		Password : <input type="password" name="password" value="" size="50" />
 		<br />
-		<input type="submit" value="Log In" />
+		<input type="submit" value="Log In" /> &nbsp;&nbsp;&nbsp;&nbsp; <a href="/forgot">Forgot Username/Password</a>
 	</form>
 {% endblock %}

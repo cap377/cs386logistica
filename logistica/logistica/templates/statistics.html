@@ -3,9 +3,9 @@
 {% block nav-home %} {% endblock %}
 {% block title %} Statistics {% endblock %}
 {% block content %}
-	<h1>Welcome {{ user.username }}</h1>
+	<p>Welcome {{ user.username }}</p>
 	{% if user.is_superuser %}
-		<p> List of users: </p>
+		<p> Below are the Statistics of the employee peer evaluations: </p>
 		<div>
 			<style>
 			th, td{

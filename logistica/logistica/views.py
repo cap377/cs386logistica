@@ -35,6 +35,9 @@ def loggedin(request):
 def invalid(request):
 	return render(request, 'invalid.html', {})
 
+def forgot(request):
+    return render(request, 'forgot.html', {})
+
 @login_required
 def register(request):
         return render(request, 'register.html', {})
@@ -150,7 +153,7 @@ def user_login(request):
                 return HttpResponseRedirect('/loggedin')
             else:
                 # An inactive account was used - no logging in!
-                return HttpResponse('/invalid')
+                return HttpResponse("Your MyStupidDreams account is disabled.")
         else:
             # Bad login details were provided. So we can't log the user in.
             print("Invalid login details: {0}, {1}".format(username, password))
