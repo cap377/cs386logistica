@@ -5,12 +5,13 @@
 
 {% block content %}
 
-<h1>Create A Team</h1>
-<p>Enter a Team Name, as well as a minimum of three team members below.</p>
 
 
 <div style="width: 100%;">
-   <div style="float:left; width: 80%">
+   <div style="float:left; width: 50%">
+   	<h3>Create A Team</h3>
+<p>Enter a Team Name, as well as a minimum of three team members below.</p>
+
 
 <form action="/registerTeam/" method="POST">
 	{% csrf_token %}
@@ -21,22 +22,35 @@
 	</button>
 	{% endbuttons %}
 </form>
-
-
    </div>
-   <div style="float:right;">
+   <div style="float:right; width: 50%">
 
 	<p></p>
+	<h3>Existing Teams</h3>
+	<div class="CSSTableGenerator" >
+                <table >
+                    <tr>
+                        <td>
+                            Team
+                        </td>
+                        <td >
+                            Members
+                        </td>
+                    </tr>
 	{% for t in teams %}
-		<p>Team: {{t.teamName}}</p>
-		<p>{{t.member1}}</p>
-		<p>{{t.member2}}</p>
-		<p>{{t.member3}}</p>
-		<p>{{t.member4}}</p>
-		<p>{{t.member5}}</p>
+	
+                    <tr>
+                        <td >
+                            {{t.teamName}}
+                        </td>
+                        <td>
+                            {{t.member1}}, {{t.member2}}, {{t.member3}}, {{t.member4}}, {{t.member5}}
+                        </td>
+                    </tr>
 
-		<br> </br>
 	{% endfor %}
+	                </table>
+            </div>
 
    </div>
 </div>
