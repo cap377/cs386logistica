@@ -14,6 +14,7 @@
 			{% for e in evaluations %}
 				{% if e.evaluee = u.username %}
 					<div>
+					<p><b>{{ u.username }}</b> was scored: Participation: {{e.participation}}, Communication: {{e.communication}}, Presentation: {{e.presentation}}, 
 						Technical Skills: {{e.techskill}}</p>
 					</div>
 				{% endif %}
