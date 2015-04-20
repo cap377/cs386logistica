@@ -22,22 +22,47 @@
 	<div style="float:right; width: 50%">
 	{% for t in teams %}
 	{% if t.member1 == user.username %}
-		<p>This is your team: {{t.teamName}} </p>
+		<p>This is your team: {{t.teamName}}</p>
+		<p>{{t.member1}}<br>
+			{{t.member2}}<br>
+			{{t.member3}}<br>
+			{{t.member4}}<br>
+			{{t.member5}}</p>
 	{% endif %}
 	{% if t.member2 == user.username %}
 		<p>This is your team: {{t.teamName}} </p>
+		<p>{{t.member1}}<br>
+			{{t.member2}}<br>
+			{{t.member3}}<br>
+			{{t.member4}}<br>
+			{{t.member5}}</p>
 	{% endif %}
 	{% if t.member3 == user.username %}
 		<p>This is your team: {{t.teamName}} </p>
+		<p>{{t.member1}}<br>
+			{{t.member2}}<br>
+			{{t.member3}}<br>
+			{{t.member4}}<br>
+			{{t.member5}}</p>
 	{% endif %}
 	{% if t.member4 == user.username %}
 		<p>This is your team: {{t.teamName}} </p>
+		<p>{{t.member1}}<br>
+			{{t.member2}}<br>
+			{{t.member3}}<br>
+			{{t.member4}}<br>
+			{{t.member5}}</p>
 	{% endif %}
 	{% if t.member5 == user.username %}
 		<p>This is your team: {{t.teamName}} </p>
+		<p>{{t.member1}}<br>
+			{{t.member2}}<br>
+			{{t.member3}}<br>
+			{{t.member4}}<br>
+			{{t.member5}}</p>
 	{% endif %}
 	{% empty %}
-		<p>You have no team</p>
+		<p><b><center>You have no team</center></b></p>
 	{% endfor %}
 		
 	</div>
