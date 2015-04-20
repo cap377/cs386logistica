@@ -96,7 +96,7 @@ def evaluation(request):
         form = EvaluationForm()
     else:
         return HttpResponseRedirect ("/404/")
-    return render(request, 'evaluation.html', {"form": form})
+    return render(request, 'evaluation.html', {"form": form, "teams": Team.objects.all})
 
 @login_required
 def registerTeam(request):

@@ -3,10 +3,12 @@
 {% block nav-home %} {% endblock %}
 {% block title %} Peer Evaluation {% endblock %}
 {% block content %}
-	<h1>Peer Evaluation</h1>
-	<p>This is the Team Member evaluation form for Logistica employees. Enter the name of the team member you are evaluating into the <b>Evaluee</b> field. The following four fields are based on a scale from 1 to 10, 1 being the lowest possible score, 10 being the highest. Then press the submit button at the bottom of the page to submit and return to your employee page.</p>
+	<h3>Peer Evaluation</h3>
+	<p>This is the Team Member evaluation form for Logistica employees. Select the name of the team member you are evaluating into the <b>Evaluee</b> field. 
+	The following four fields are based on a scale from 1 to 10, 1 being the lowest possible score, 10 being the highest. 
+	Then press the submit button at the bottom of the page to submit the evaluation and return to your main employee page.</p>
 	<div style="width: 100%;">
-		<div style="float:left; width: 80%">
+		<div style="float:left; width: 50%">
 			<form action="/evaluation" method="POST">
 				{% csrf_token %}
 				{% bootstrap_form form %}
@@ -17,8 +19,27 @@
 			{% endbuttons %}
 		</form>
 	</div>
-	<div style="float:right;">
-		<p>This is your team: TEAM </p>
+	<div style="float:right; width: 50%">
+	{% for t in teams %}
+	{% if t.member1 == user.username %}
+		<p>This is your team: {{t.teamName}} </p>
+	{% endif %}
+	{% if t.member2 == user.username %}
+		<p>This is your team: {{t.teamName}} </p>
+	{% endif %}
+	{% if t.member3 == user.username %}
+		<p>This is your team: {{t.teamName}} </p>
+	{% endif %}
+	{% if t.member4 == user.username %}
+		<p>This is your team: {{t.teamName}} </p>
+	{% endif %}
+	{% if t.member5 == user.username %}
+		<p>This is your team: {{t.teamName}} </p>
+	{% endif %}
+	{% empty %}
+		<p>You have no team</p>
+	{% endfor %}
+		
 	</div>
 </div>
 <div style="clear:both"></div>
