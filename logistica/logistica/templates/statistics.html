@@ -8,30 +8,80 @@
         <h1>Welcome {{ user.username }}</h1>
     {% if user.is_superuser %}
 	<p> List of users: </p>
+	<div>
+		<style>
+		th, td{
+			padding: 10px;
+		}
+		th, td{
+			text-align: center;
+		}
+		</style>
+			<table border="1">
+				<tr>
+					<th>Employee</th>
+					<th>Participation</th>
+					<th>Communication</th>
+					<th>Presentation</th>
+					<th>Technical Skills</th>
+				</tr>
 		{% for u in users %}
 			{% if u.is_superuser %}
 			{% else %}
 			{% for e in evaluations %}
 				{% if e.evaluee = u.username %}
-					<div>
+				<tr>
+					<td>{{u.username}}</td>
+					<td>{{e.participation}}</td>
+					<td>{{e.communication}}</td>
+					<td>{{e.presentation}}</td>
+					<td>{{e.techskill}}</td>
+				</tr>
+					<!-- <div>
 					<p><b>{{ u.username }}</b> was scored: Participation: {{e.participation}}, Communication: {{e.communication}}, Presentation: {{e.presentation}}, 
 						Technical Skills: {{e.techskill}}</p>
-					</div>
+					</div> -->
 				{% endif %}
-			{% endfor %}			
+			{% endfor %}
 			{% endif %}
 		{% endfor %}
+		</table>
+			</div>
 	{% else %}
 		<div>
 			<p> Statistics for {{ user.username }}. </p>
 		</div>
+		<div>
+		<style>
+		th, td{
+			padding: 10px;
+		}
+		th, td{
+			text-align: center;
+		}
+		</style>
+			<table border="1">
+				<tr>
+					<th>Participation</th>
+					<th>Communication</th>
+					<th>Presentation</th>
+					<th>Technical Skills</th>
+				</tr>
 		{% for e in evaluations %}
 			{% if e.evaluee = user.username %}
-				<div>
+				<tr>
+					<td>{{e.participation}}</td>
+					<td>{{e.communication}}</td>
+					<td>{{e.presentation}}</td>
+					<td>{{e.techskill}}</td>
+				</tr>
+				<!-- <div>
 					<p> Participation: {{e.participation}}, Communication: {{e.communication}}, Presentation: {{e.presentation}}, Technical Skills: {{e.techskill}} </p>
-				</div>
+				</div> -->
 				{% endif %}
 				{% endfor %}
+			</table>
+		</div>
 	{% endif %}
 
      
