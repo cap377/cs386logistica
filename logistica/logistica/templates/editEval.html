@@ -4,13 +4,19 @@
 {% block title %} Recent Sub {% endblock %}
 {% block content %}
 
-<h1>{{user.username}}'s EDIT EVAL</h1>
+<h1>Edit an Evaluation</h1>
 
 <p>You submitted an evaluation for employee(s):</p>
 
+<form id="editEval" method="post" action"">
+	{% csrf_token %}
+
+	{{form.as_p}}
+
+	<input type="submit" name="submit" value="Update" />
 
 
-{{form.as_p}}
+</form>
 
      
 

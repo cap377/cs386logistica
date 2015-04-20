@@ -57,14 +57,14 @@ class EvaluationForm(forms.Form):
 class EvalForm(forms.ModelForm):
     class Meta:
         model = Evaluation
-        #exclude = ('author', 'evaluee')
+        exclude = ('author', 'evaluee')
 
-def edit_eval(request, id=4):
+def edit_eval(request, id):
     instance = Evaluation.objects.get(id=id)
     form = EvalForm(request.POST or None, instance=instance)
     if form.is_valid():
         form.save()
-        return redirect('confirmation')
+        return HttpResponseRedirect('/confirmation')
     return render(request, 'editEval.html', {'form': form})
 
 
