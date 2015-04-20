@@ -26,4 +26,5 @@ urlpatterns = patterns('',
     url(r'^invalid$', 'logistica.views.invalid', name='invalid'),
     url(r'^evaluation$', 'logistica.views.evaluation', name='evaluation'),
     url(r'^recentsub/', 'logistica.views.recentsub', name='recentsub'),
+    url(r'^editEval/(?P<id>\d+)/$', 'logistica.views.edit_eval', name='editEval'),
 )  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

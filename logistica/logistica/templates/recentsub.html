@@ -13,7 +13,7 @@
 		{% for e in evaluations %}
 			{% if e.author = user.username %}
 			<div>
-					<p> <a href="/recentsub">{{e.evaluee}}</a> </p>
+					<p> <a href="{% url 'editEval' id=e.id %}">EDIT</a> -----------   {{e.evaluee}} </p>
 			</div>
 			{% endif %}
 		{% endfor %}

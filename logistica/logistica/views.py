@@ -53,6 +53,21 @@ class EvaluationForm(forms.Form):
     presentation = forms.IntegerField(required = True, label = "Presentation" , validators=[MinValueValidator(1), MaxValueValidator(10)])
     techskill = forms.IntegerField(required = True, label = "Technical Skill" , validators=[MinValueValidator(1), MaxValueValidator(10)])
     
+
+class EvalForm(forms.ModelForm):
+    class Meta:
+        model = Evaluation
+        #exclude = ('author', 'evaluee')
+
+def edit_eval(request, id=4):
+    instance = Evaluation.objects.get(id=id)
+    form = EvalForm(request.POST or None, instance=instance)
+    if form.is_valid():
+        form.save()
+        return redirect('confirmation')
+    return render(request, 'editEval.html', {'form': form})
+
+
 @login_required
 def evaluation(request):
     if request.method == 'POST':
