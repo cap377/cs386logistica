@@ -2,58 +2,48 @@
 {% load bootstrap3 %}
 {% block nav-home %} {% endblock %}
 {% block title %} RegisterTeam {% endblock %}
-
 {% block content %}
-
-
-
-<div style="width: 100%;">
-   <div style="float:left; width: 50%">
-   	<h3>Create A Team</h3>
-<p>Enter a Team Name, as well as a minimum of three team members below.</p>
-
-
-<form action="/registerTeam/" method="POST">
-	{% csrf_token %}
-	{%  bootstrap_form form %}
-	{% buttons %}
-	<button type="submit" class="btn btn-primary">
-	Submit
-	</button>
-	{% endbuttons %}
-</form>
-   </div>
-   <div style="float:right; width: 50%">
-
-	<p></p>
-	<h3>Existing Teams</h3>
-	<div class="CSSTableGenerator" >
-                <table >
-                    <tr>
-                        <td>
-                            Team
-                        </td>
-                        <td >
-                            Members
-                        </td>
-                    </tr>
-	{% for t in teams %}
-	
-                    <tr>
-                        <td >
-                            {{t.teamName}}
-                        </td>
-                        <td>
-                            {{t.member1}}, {{t.member2}}, {{t.member3}}, {{t.member4}}, {{t.member5}}
-                        </td>
-                    </tr>
-
-	{% endfor %}
-	                </table>
-            </div>
-
-   </div>
+  <div style="width: 100%;">
+    <div style="float:left; width: 50%">
+      <h3>Create A Team</h3>
+      <p>Enter a Team Name, as well as a minimum of three team members below.</p>
+      <form action="/registerTeam/" method="POST">
+        {% csrf_token %}
+        {%  bootstrap_form form %}
+        {% buttons %}
+        <button type="submit" class="btn btn-primary">
+        Submit
+        </button>
+      {% endbuttons %}
+    </form>
+  </div>
+  <div style="float:right; width: 50%">
+    <p></p>
+    <h3>Existing Teams</h3>
+    <div class="CSSTableGenerator" >
+      <table >
+        <tr>
+          <td>
+            Team
+          </td>
+          <td >
+            Members
+          </td>
+        </tr>
+        {% for t in teams %}
+          
+          <tr>
+            <td >
+              {{t.teamName}}
+            </td>
+            <td>
+              {{t.member1}}, {{t.member2}}, {{t.member3}}, {{t.member4}}, {{t.member5}}
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
 </div>
 <div style="clear:both"></div>
-
 {% endblock %}
