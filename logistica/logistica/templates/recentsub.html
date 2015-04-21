@@ -3,15 +3,18 @@
 {% block nav-home %} {% endblock %}
 {% block title %} Recent Sub {% endblock %}
 {% block content %}
-	<h1>{{user.username}}'s Recent Evaluation Submissions</h1>
+	<h3>Recent Evaluation Submissions</h3>
 	<p>You submitted an evaluation for employee(s):</p>
 	{% for e in evaluations %}
 		{% if e.author = user.username %}
 			<div>
-				<p> <a href="{% url 'editEval' id=e.id %}">EDIT</a> -----------   {{e.evaluee}} </p>
+				<p> <a href="{% url 'editEval' id=e.id %}"><button type="submit" class="btn btn-primary">Edit</button></a> -----------   {{e.evaluee}} </p>
 			</div>
 		{% endif %}
+		{% empty %}
+			<center><p> You have not submitted any evaluations.</p></center>
 	{% endfor %}
+	
 	
 	
 {% endblock %}
