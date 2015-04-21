@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib import auth
+from django.db.models import Avg
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
 from django.core.context_processors import csrf
@@ -121,9 +122,15 @@ def registerTeam(request):
 @login_required
 def statistics(request):
     if request.user.is_authenticated():
+        average = Evaluation.objects.aggregate(Avg('participation'), Avg('communication'), Avg('presentation'), Avg('techskill'))
         return render(request, 'statistics.html',
                      {'users': User.objects.all,
-                      'evaluations': Evaluation.objects.all})
+                      'evaluations': Evaluation.objects.all,
+                      'partavg': Evaluation.objects.aggregate(Avg('participation')),
+                      'commavg': Evaluation.objects.aggregate(Avg('communication')),
+                      'presavg': Evaluation.objects.aggregate(Avg('presentation')),
+                      'techavg': Evaluation.objects.aggregate(Avg('techskill')),
+                      'totalavg': average})
     else:
         return HttpResponseRedirect('/home/')
 
